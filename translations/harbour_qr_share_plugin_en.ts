@@ -8,26 +8,26 @@
         <source>Share as QR-code</source>
         <oldsource>QR plugin</oldsource>
         <extracomment>Display name for QR share plugin</extracomment>
-        <translation>QR-koodi</translation>
+        <translation>QR-Code</translation>
     </message>
     <message id="harbour-qr-share-plugin-regenerate-id">
         <location filename="qml/QRCodeShow.qml" line="63"/>
         <source>Regenerate with edited data</source>
         <extracomment>Generate with edited data</extracomment>
-        <translation>Päivitä muokatulla tekstillä</translation>
+        <translation>Renegerate with edited data</translation>
     </message>
     <message id="harbour-qr-share-plugin-save-pic-id">
         <location filename="qml/QRCodeShow.qml" line="73"/>
         <source>Save in pictures</source>
         <extracomment>Save function text</extracomment>
-        <translation>Tallenna kuvaksi</translation>
+        <translation>Save in pictures</translation>
     </message>
     <message id="harbour-qr-share-plugin-header-id">
         <location filename="qml/QRCodeShow.qml" line="90"/>
         <source>QR-code share</source>
         <oldsource>Example Share</oldsource>
         <extracomment>Header for QR-code plugin</extracomment>
-        <translation>Jaa QR-koodina</translation>
+        <translation>Share by QR-Code</translation>
     </message>
 </context>
 <context>
@@ -35,7 +35,7 @@
     <message>
         <location filename="src/qruploader.cpp" line="45"/>
         <source>QR-code</source>
-        <translation>QR-koodi lisäosa</translation>
+        <translation>QR-Code plugin</translation>
     </message>
 </context>
 </TS>

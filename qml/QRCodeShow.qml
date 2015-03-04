@@ -29,59 +29,101 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import org.nemomobile.thumbnailer 1.0
+
 import Sailfish.TransferEngine 1.0
+import fi.lahdemaki.QQRCode 1.0
 
-ShareDialog {
-    id: root
+Page {
+  id: root
 
-    property int viewWidth: root.isPortrait ? Screen.width : Screen.width / 2
+  allowedOrientations: Orientation.Portrait
 
-    onAccepted: {
-        shareItem.start()
+  property string source
+  property variant content
+
+  property bool appActive: Qt.application.active
+
+  onAppActiveChanged: {
+    if(appActive)
+    {
+      code.requestPaint();
     }
+  }
 
-    Thumbnail {
-        id: thumbnail
-        width: viewWidth
-        height: parent.height / 2
-        source: root.source
-        sourceSize.width: Screen.width
-        sourceSize.height: Screen.height / 2
-    }
+  SilicaFlickable {
 
-    Item {
-        anchors {
-            top: root.isPortrait ? thumbnail.bottom : parent.top
-            left: root.isPortrait ? parent.left: thumbnail.right
-            right: parent.right
-            bottom: parent.bottom
+    anchors.fill: parent
+
+    contentHeight: columnContent.height
+
+    PullDownMenu {
+      MenuItem {
+        //: Generate with edited data
+        //% "Regenerate with edited data"
+        text: qsTrId("harbour-qr-share-plugin-regenerate-id")
+        onClicked: {
+          code.value = testArea.text;
         }
 
-        Label {
-            anchors.centerIn:parent
-            width: viewWidth
-            //: Label for example share UI
-            //% "Example Test Share UI"
-            text: qsTrId("example-test-share-ui-la-id")
-            horizontalAlignment: Text.AlignHCenter
+      }
+
+      MenuItem {
+        //: Save function text
+        //% "Save in pictures"
+        text: qsTrId("harbour-qr-share-plugin-save-pic-id")
+        onClicked: {
+
+          code.save(StandardPaths.pictures + "/QR-" + new Date().toLocaleTimeString() + ".png");
         }
+      }
     }
 
-    SailfishShare {
-        id: shareItem
-        source: root.source
-        metadataStripped: true
-        serviceId: root.methodId
-        userData: {"description": "Random Text which can be what ever",
-                   "accountId": root.accountId,
-                   "scalePercent": root.scalePercent}
+    Column {
+      id: columnContent
+      anchors.centerIn: parent
+      width: parent.width
+      spacing: Theme.paddingLarge
+
+      PageHeader {
+        //: Header for QR-code plugin
+        //% "QR-code share"
+        title: qsTrId("harbour-qr-share-plugin-header-id")
+      }
+
+      QRCode {
+        id: code
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        width: 420
+        height: 420
+      }
+
+      TextArea {
+        id: testArea
+        width: parent.width
+
+      }
     }
 
-    DialogHeader {
-        //: Header for example share plugin
-        //% "Example Share"
-        acceptText: qsTrId("example-share-he-id")
+    Component.onCompleted: {
+
+      switch(content.type)
+      {
+
+      case "text/vcard":
+        code.value = content.data.replace(/^(PHOTO| ).*$[\r\n]*/gm, "");
+        break;
+      case "text/x-url":
+        code.value = content.status;
+        break;
+      default:
+        break;
+      }
+
+      testArea.text = code.value;
     }
+
+
+  }
 }
 

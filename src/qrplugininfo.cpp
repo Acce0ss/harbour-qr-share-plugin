@@ -27,49 +27,49 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
-#include "exampleplugininfo.h"
+#include "qrplugininfo.h"
 
-ExamplePluginInfo::ExamplePluginInfo()
+QRPluginInfo::QRPluginInfo()
     : m_ready(false)
 {
 
 }
 
-ExamplePluginInfo::~ExamplePluginInfo()
+QRPluginInfo::~QRPluginInfo()
 {
 
 }
 
-QList<TransferMethodInfo> ExamplePluginInfo::info() const
+QList<TransferMethodInfo> QRPluginInfo::info() const
 {
     return m_infoList;
 }
 
-void ExamplePluginInfo::query()
+void QRPluginInfo::query()
 {
     TransferMethodInfo info;
     QStringList capabilities;
 
     // Capabilites ie. what mimetypes this plugin supports
-    capabilities << QLatin1String("image/*")
+    capabilities << QLatin1String("text/x-url")
                  << QLatin1String("text/vcard");
 
     // TODO: Translations for 3rd party plugins is not yet supported by Sailfish OS.
     //       Adding support there later, but for now just use what ever non-translated
     //       string here. This string will be visible in the share method list.
-    //: Display name for example share plugin
-    //% "Example plugin"
-    info.displayName     = qtTrId("example-localization-li-id");
+    //: Display name for QR share plugin
+    //% "Share as QR-code"
+    info.displayName     = qtTrId("harbour-qr-share-plugin-id");
 
     // Method ID is a unique identifier for this plugin. It is used to identify which share plugin should be
     // used for starting the sharing.
-    info.methodId        = QLatin1String("Example-Share-Method-ID");
+    info.methodId        = QLatin1String("Harbour-QR-Share-Method-ID");
 
     // Path to the Sharing UI which this plugin provides.
-    info.shareUIPath     = QLatin1String("/usr/share/nemo-transferengine/plugins/ExampleShareUI.qml");
+    info.shareUIPath     = QLatin1String("/usr/share/nemo-transferengine/plugins/QRCodeShow.qml");
 
     // Pass information about capabilities. This info is used for filtering share plugins
-    // which don't support defined types. For example, this plugin won't appear in the
+    // which don't support defined types. For QR, this plugin won't appear in the
     // share method list, if someone tries to share content which isn't image or vcard type,
     info.capabilitities  = capabilities;
 
@@ -81,7 +81,7 @@ void ExamplePluginInfo::query()
 }
 
 
-bool ExamplePluginInfo::ready() const
+bool QRPluginInfo::ready() const
 {
     return m_ready;
 }

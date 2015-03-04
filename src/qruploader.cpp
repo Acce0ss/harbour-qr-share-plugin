@@ -27,38 +27,38 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
-#include "exampleuploader.h"
+#include "qruploader.h"
 #include "mediaitem.h"
 
-ExampleUploader::ExampleUploader(QObject *parent):
+QRUploader::QRUploader(QObject *parent):
     MediaTransferInterface(parent)
 {
 
 }
 
-ExampleUploader::~ExampleUploader()
+QRUploader::~QRUploader()
 {
 }
 
-QString ExampleUploader::displayName() const
+QString QRUploader::displayName() const
 {
-    return tr("Example");
+    return tr("QR-code");
 }
 
-QUrl ExampleUploader::serviceIcon() const
+QUrl QRUploader::serviceIcon() const
 {
     // Url to the icon which should be shown in the transfer UI
     return QUrl("image://theme/icon-s-message");
 }
 
-bool ExampleUploader::cancelEnabled() const
+bool QRUploader::cancelEnabled() const
 {
     // Return true if cancelling ongoing upload is supported
     // Return false if cancelling ongoing upload is not supported
     return false;
 }
 
-bool ExampleUploader::restartEnabled() const
+bool QRUploader::restartEnabled() const
 {
     // Return true, if restart is  supported.
     // Return false, if restart is not supported
@@ -66,14 +66,14 @@ bool ExampleUploader::restartEnabled() const
 }
 
 
-void ExampleUploader::start()
+void QRUploader::start()
 {
     // This is called by the sharing framework to start sharing
 
     // TODO: Add your code here to start uploading
 }
 
-void ExampleUploader::cancel()
+void QRUploader::cancel()
 {
     // This is called by the sharing framework to cancel on going transfer
 

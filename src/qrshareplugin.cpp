@@ -27,35 +27,35 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
-#include "exampleshareplugin.h"
-#include "exampleuploader.h"
-#include "exampleplugininfo.h"
+#include "qrshareplugin.h"
+#include "qruploader.h"
+#include "qrplugininfo.h"
 #include <QtPlugin>
 
-ExampleSharePlugin::ExampleSharePlugin()
+QRSharePlugin::QRSharePlugin()
 {
 }
 
-ExampleSharePlugin::~ExampleSharePlugin()
+QRSharePlugin::~QRSharePlugin()
 {
 }
 
-MediaTransferInterface * ExampleSharePlugin::transferObject()
+MediaTransferInterface * QRSharePlugin::transferObject()
 {
-    return new ExampleUploader;
+    return new QRUploader;
 }
 
-TransferPluginInfo *ExampleSharePlugin::infoObject()
+TransferPluginInfo *QRSharePlugin::infoObject()
 {
-    return new ExamplePluginInfo;
+    return new QRPluginInfo;
 }
 
-QString ExampleSharePlugin::pluginId() const
+QString QRSharePlugin::pluginId() const
 {
-    return "Example-Share-Method-ID";
+    return "Harbour-QR-Share-Method-ID";
 }
 
-bool ExampleSharePlugin::enabled() const
+bool QRSharePlugin::enabled() const
 {
     return true;
 }

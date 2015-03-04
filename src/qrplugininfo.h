@@ -26,17 +26,17 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
-#ifndef EXAMPLEPLUGININFO_H
-#define EXAMPLEPLUGININFO_H
+#ifndef QRPLUGININFO_H
+#define QRPLUGININFO_H
 
 #include "transferplugininfo.h"
 
-class ExamplePluginInfo : public TransferPluginInfo
+class QRPluginInfo : public TransferPluginInfo
 {
     Q_OBJECT
 public:
-    ExamplePluginInfo();
-    ~ExamplePluginInfo();
+    QRPluginInfo();
+    ~QRPluginInfo();
 
     QList<TransferMethodInfo> info() const;
     void query();
@@ -46,4 +46,4 @@ private:
     bool m_ready;
 };
 
-#endif // EXAMPLEPLUGININFO_H
+#endif // QRPLUGININFO_H

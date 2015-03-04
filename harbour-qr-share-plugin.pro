@@ -1,5 +1,5 @@
 TEMPLATE = lib
-TARGET = $$qtLibraryTarget(exampleshareplugin)
+TARGET = $$qtLibraryTarget(harbour-qr-shareplugin)
 CONFIG += plugin
 DEPENDPATH += .
 
@@ -8,26 +8,38 @@ PKGCONFIG += nemotransferengine-qt5
 
 # Input
 HEADERS += \
-    exampleplugininfo.h \
-    exampleuploader.h \
-    exampleshareplugin.h
+    src/qrplugininfo.h \
+    src/qruploader.h \
+    src/qrshareplugin.h
 
 SOURCES += \
-    exampleplugininfo.cpp \
-    exampleuploader.cpp \
-    exampleshareplugin.cpp
+    src/qrplugininfo.cpp \
+    src/qruploader.cpp \
+    src/qrshareplugin.cpp
 
 OTHER_FILES += \
-    ExampleShareUI.qml
+    qml/QRCodeShow.qml
 
-shareui.files = *.qml
+shareui.files = qml/QRCodeShow.qml
 shareui.path = /usr/share/nemo-transferengine/plugins
 
 target.path = /usr/lib/nemo-transferengine/plugins
 INSTALLS += target shareui
 
-TS_FILE = $$OUT_PWD/example_share_plugin.ts
-EE_QM = $$OUT_PWD/example_share_plugin_eng_en.qm
+OTHER_FILES += \
+    qml/qqr.js/qqr.js \
+    qml/qqr.js/QRCode.qml \
+    qml/qqr.js/qmldir
+
+qqrlib.files = qml/qqr.js/qqr.js \
+    qml/qqr.js/QRCode.qml \
+    qml/qqr.js/qmldir
+qqrlib.path = /usr/lib/qt5/qml/fi/lahdemaki/QQRCode
+
+INSTALLS += qqrlib
+
+TS_FILE = $$OUT_PWD/harbour_qr_share_plugin.ts
+EE_QM = $$OUT_PWD/harbour_qr_share_plugin_eng_en.qm
 
 ts.commands += lupdate . -ts $$TS_FILE
 ts.CONFIG += no_check_exist no_link
@@ -49,8 +61,8 @@ engineering_english_install.path = /usr/share/translations/nemotransferengine
 engineering_english_install.files = $$EE_QM
 engineering_english_install.CONFIG += no_check_exist
 
-TS_FI_FILE = translations/example_share_plugin_fi.ts
-QM_FI_FILE = example_share_plugin_fi.qm
+TS_FI_FILE = translations/harbour_qr_share_plugin_fi.ts
+QM_FI_FILE = harbour_qr_share_plugin_fi.qm
 
 finnish.commands += lrelease -idbased $$TS_FI_FILE -qm $$QM_FI_FILE
 finnish.CONFIG += no_check_exist no_link
@@ -69,5 +81,5 @@ PRE_TARGETDEPS += ts engineering_english finnish
 INSTALLS += ts_install engineering_english_install finnish_install
 
 OTHER_FILES += \
-    rpm/*
+    rpm/* \
     translations/*

@@ -27,19 +27,19 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
-#ifndef EXAMPLESHAREPLUGIN_H
-#define EXAMPLESHAREPLUGIN_H
+#ifndef QRSHAREPLUGIN_H
+#define QRSHAREPLUGIN_H
 #include "transferplugininterface.h"
 #include <QObject>
 
-class Q_DECL_EXPORT ExampleSharePlugin : public QObject, public TransferPluginInterface
+class Q_DECL_EXPORT QRSharePlugin : public QObject, public TransferPluginInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "com.myapp.transfer.plugin.example")
+    Q_PLUGIN_METADATA(IID "com.myapp.transfer.plugin.QR")
     Q_INTERFACES(TransferPluginInterface)
 public:
-    ExampleSharePlugin();
-    ~ExampleSharePlugin();
+    QRSharePlugin();
+    ~QRSharePlugin();
 
     MediaTransferInterface * transferObject();
     TransferPluginInfo *infoObject();
@@ -48,4 +48,4 @@ public:
 
 };
 
-#endif // EXAMPLESHAREPLUGIN_H
+#endif // QRSHAREPLUGIN_H
