@@ -35,7 +35,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 class Q_DECL_EXPORT QRSharePlugin : public QObject, public TransferPluginInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "com.myapp.transfer.plugin.QR")
+    Q_PLUGIN_METADATA(IID "fi.lahdemaki.transfer.plugin.harbour-qr-share-plugin")
     Q_INTERFACES(TransferPluginInterface)
 public:
     QRSharePlugin();

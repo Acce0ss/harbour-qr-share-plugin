@@ -1,5 +1,5 @@
 TEMPLATE = lib
-TARGET = $$qtLibraryTarget(harbour-qr-shareplugin)
+TARGET = $$qtLibraryTarget(harbourqrshareplugin)
 CONFIG += plugin
 DEPENDPATH += .
 
@@ -39,7 +39,7 @@ qqrlib.path = /usr/lib/qt5/qml/fi/lahdemaki/QQRCode
 INSTALLS += qqrlib
 
 TS_FILE = $$OUT_PWD/harbour_qr_share_plugin.ts
-EE_QM = $$OUT_PWD/harbour_qr_share_plugin_eng_en.qm
+EE_QM = $$OUT_PWD/harbour-qr-share-plugin-eng_en.qm
 
 ts.commands += lupdate . -ts $$TS_FILE
 ts.CONFIG += no_check_exist no_link
@@ -62,7 +62,7 @@ engineering_english_install.files = $$EE_QM
 engineering_english_install.CONFIG += no_check_exist
 
 TS_FI_FILE = translations/harbour_qr_share_plugin_fi.ts
-QM_FI_FILE = harbour_qr_share_plugin_fi.qm
+QM_FI_FILE = harbour-qr-share-plugin-fi.qm
 
 finnish.commands += lrelease -idbased $$TS_FI_FILE -qm $$QM_FI_FILE
 finnish.CONFIG += no_check_exist no_link
@@ -74,11 +74,24 @@ finnish_install.path = /usr/share/translations/nemotransferengine
 finnish_install.files = $$QM_FI_FILE
 finnish_install.CONFIG += no_check_exist
 
-QMAKE_EXTRA_TARGETS += ts engineering_english finnish
+TS_EN_FILE = translations/harbour_qr_share_plugin_en_GB.ts
+QM_EN_FILE = harbour-qr-share-plugin-en_GB.qm
 
-PRE_TARGETDEPS += ts engineering_english finnish
+english.commands += lrelease -idbased $$TS_EN_FILE -qm $$QM_EN_FILE
+english.CONFIG += no_check_exist no_link
+english.depends = ts
+english.input = $$TS_EN_FILE
+english.output = $$QM_EN_FILE
 
-INSTALLS += ts_install engineering_english_install finnish_install
+english_install.path = /usr/share/translations/nemotransferengine
+english_install.files = $$QM_EN_FILE
+english_install.CONFIG += no_check_exist
+
+QMAKE_EXTRA_TARGETS += ts engineering_english finnish english
+
+PRE_TARGETDEPS += ts engineering_english finnish english
+
+INSTALLS += ts_install engineering_english_install english_install
 
 OTHER_FILES += \
     rpm/* \
