@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fi_FI">
+<TS version="2.1" language="sv_SE">
 <context>
     <name></name>
     <message id="harbour-qr-share-plugin-id">
@@ -9,31 +9,31 @@
         <source></source>
         <oldsource>QR-Code</oldsource>
         <extracomment>Display name for QR share plugin</extracomment>
-        <translation>QR-koodi</translation>
+        <translation>Dela som QR-kod</translation>
     </message>
     <message id="harbour-qr-share-plugin-regenerate-id">
         <location filename="../qml/QRCodeShow.qml" line="87"/>
         <source>Regenerate with edited data</source>
         <extracomment>Generate with edited data</extracomment>
-        <translation type="unfinished">Päivitä muokatulla tekstillä</translation>
+        <translation>Koda om, med redigerad data</translation>
     </message>
     <message id="harbour-qr-share-plugin-save-pic-id">
         <location filename="../qml/QRCodeShow.qml" line="66"/>
         <source>Save in pictures</source>
         <extracomment>Save function text</extracomment>
-        <translation type="unfinished">Tallenna kuvaksi</translation>
+        <translation>Spara i bilder</translation>
     </message>
     <message id="harbour-qr-share-plugin-save-open-gallery-id">
         <location filename="../qml/QRCodeShow.qml" line="76"/>
         <source>Save and open in gallery</source>
         <extracomment>Save and open function text</extracomment>
-        <translation type="unfinished">Tallenna ja avaa galleriassa</translation>
+        <translation>Spara och öppna i galleri</translation>
     </message>
     <message id="harbour-qr-share-plugin-header-id">
         <location filename="../qml/QRCodeShow.qml" line="104"/>
         <source>QR-code share</source>
         <extracomment>Header for QR-code plugin</extracomment>
-        <translation type="unfinished">Jaa QR-koodina</translation>
+        <translation>QR-kod del</translation>
     </message>
 </context>
 </TS>

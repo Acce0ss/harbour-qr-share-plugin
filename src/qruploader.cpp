@@ -13,7 +13,7 @@ QRUploader::~QRUploader()
 
 QString QRUploader::displayName() const
 {
-    return tr("harbour-qr-share-plugin");
+    return qtTrId("harbour-qr-share-plugin-id");
 }
 
 QUrl QRUploader::serviceIcon() const

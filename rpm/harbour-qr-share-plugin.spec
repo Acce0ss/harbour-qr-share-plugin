@@ -1,5 +1,5 @@
 Name: harbour-qr-share-plugin
-Version: 0.1
+Version: 0.2
 Release: 1
 Summary: QRCode text / link / vcard share plugin, using qqr.js by M4rtinK
 Group: System/Libraries

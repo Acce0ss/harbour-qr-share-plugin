@@ -31,7 +31,7 @@ void QRPluginInfo::query()
     //       Adding support there later, but for now just use what ever non-translated
     //       string here. This string will be visible in the share method list.
     //: Display name for QR share plugin
-    //% "Share as QR-code"
+    // "QR-Code"
     info.displayName     = qtTrId("harbour-qr-share-plugin-id");
 
     // Method ID is a unique identifier for this plugin. It is used to identify which share plugin should be
@@ -52,7 +52,7 @@ void QRPluginInfo::query()
     m_ready = true;
     emit infoReady();
 
-    qDebug() << QLocale().name();
+    qDebug() << QLocale::system().name();
 }
 
 
