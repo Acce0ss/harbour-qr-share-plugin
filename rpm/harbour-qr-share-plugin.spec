@@ -14,6 +14,7 @@ BuildRequires: qt5-qttools-linguist
 
 Requires:  nemo-transferengine-qt5
 Requires:  declarative-transferengine-qt5 >= 0.0.44
+Requires:  qt5-qtdeclarative-import-sensors >= 5.2
 
 %description
 %{summary}.

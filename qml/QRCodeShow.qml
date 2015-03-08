@@ -1,12 +1,12 @@
 import QtQuick 2.0
+import QtSensors 5.2
+
 import Sailfish.Silica 1.0
 
 import fi.lahdemaki.QQRCode 1.0
 
 Page {
   id: root
-
-  allowedOrientations: Orientation.Portrait | Orientation.PortraitInverted
 
   property string source
   property variant content
@@ -20,15 +20,56 @@ Page {
     }
   }
 
+  RotationSensor {
+    id: sensor
+
+    active: appActive
+
+    property bool upsideDown: false
+    property int hysteresis: -10
+
+    onReadingChanged: {
+
+      if(reading.x < hysteresis)
+      {
+        upsideDown = true;
+        hysteresis = -2;
+      }
+      else
+      {
+        upsideDown = false;
+        hysteresis = -10;
+      }
+    }
+  }
+
   SilicaFlickable {
 
     anchors.fill: parent
 
-    contentHeight: (root.orientation === Orientation.Portrait) ? columnContent.height : parent.height
+    contentHeight: !sensor.upsideDown ? columnContent.height : parent.height
 
     PullDownMenu {
 
-      visible: root.orientation === Orientation.Portrait
+      id: functionMenu
+
+      opacity: sensor.upsideDown ? 0.0 : 1.0
+
+      Behavior on opacity {
+        NumberAnimation {
+          duration: 300
+          onRunningChanged: {
+            if(!running)
+            {
+              functionMenu.visible = !sensor.upsideDown;
+            }
+            else if(running && !functionMenu.visible)
+            {
+              functionMenu.visible = !sensor.upsideDown;
+            }
+          }
+        }
+      }
 
       MenuItem {
         //: Save function text
@@ -69,38 +110,90 @@ Page {
       spacing: Theme.paddingLarge
 
       PageHeader {
+        id: header
+        opacity: sensor.upsideDown ? 0.0 : 1.0
+
+        Behavior on opacity {
+          NumberAnimation {
+            duration: 300
+          }
+        }
+
         //: Header for QR-code plugin
         //% "QR-code share"
         title: qsTrId("harbour-qr-share-plugin-header-id")
       }
 
 
-      QRCode {
-        id: code
+      Item {
+        id: spacer
+        height: sensor.upsideDown ? (root.height/2 - header.height - codeContainer.height / 2 ) : 0
+
+        Behavior on height {
+          SmoothedAnimation {
+            duration: 500
+          }
+        }
+
+        width: parent.width
+      }
+
+      Rectangle{
+        id: codeContainer
         anchors.horizontalCenter: parent.horizontalCenter
 
-        width: 420
+        width: 420+5
         height: width
 
-        value: switch(root.content.type)
-               {
-               case "text/vcard":
-                 return root.content.data.replace(/^(PHOTO| ).*$[\r\n]*/gm, "");
-               case "text/x-url":
-                 return root.content.status;
-               default:
-                 return "Sorry for the error...";
-               }
+        radius: 10
 
-        Component.onCompleted: {
-          testArea.text = code.value;
+        QRCode {
+          id: code
+          anchors.centerIn: parent
+
+          width: 420
+          height: width
+
+          value: switch(root.content.type)
+                 {
+                 case "text/vcard":
+                   //remove photo from contact data
+                   return root.content.data.replace(/^(PHOTO| ).*$[\r\n]*/gm, "");
+                 case "text/x-url":
+                   return root.content.status;
+                 default:
+                   return "Sorry for the error...";
+                 }
+
+          Component.onCompleted: {
+            testArea.text = code.value;
+          }
+        }
+
+        rotation: sensor.upsideDown ? 180 : 0
+
+        Behavior on rotation {
+          SmoothedAnimation {
+            duration: 1500
+            easing {
+              type: Easing.OutElastic
+              amplitude: 0.2
+              period: 1.5
+            }
+          }
         }
       }
 
       TextArea {
         id: testArea
 
-        visible: root.orientation === Orientation.Portrait
+        opacity: sensor.upsideDown ? 0.0 : 1.0
+
+        Behavior on opacity {
+          NumberAnimation {
+            duration: 300
+          }
+        }
 
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
