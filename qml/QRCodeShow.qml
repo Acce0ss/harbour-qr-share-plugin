@@ -71,6 +71,12 @@ Page {
         }
       }
 
+      Behavior on height {
+        SmoothedAnimation {
+          duration: 500
+        }
+      }
+
       MenuItem {
         //: Save function text
         //% "Save in pictures"
@@ -105,7 +111,10 @@ Page {
 
     Column {
       id: columnContent
-      anchors.centerIn: parent
+
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+
       width: parent.width - 2*Theme.paddingSmall
       spacing: Theme.paddingLarge
 
@@ -127,7 +136,10 @@ Page {
 
       Item {
         id: spacer
-        height: sensor.upsideDown ? (root.height/2 - header.height - codeContainer.height / 2 ) : 0
+        height: sensor.upsideDown ? (root.height/2
+                                     - header.height
+                                     - codeContainer.height / 2
+                                     - 2*Theme.paddingLarge ) : 5
 
         Behavior on height {
           SmoothedAnimation {
@@ -142,10 +154,12 @@ Page {
         id: codeContainer
         anchors.horizontalCenter: parent.horizontalCenter
 
-        width: 420+5
+        width: 420+10
         height: width
 
-        radius: 10
+        radius: 15
+
+        transformOrigin: Item.Center
 
         QRCode {
           id: code
@@ -153,6 +167,8 @@ Page {
 
           width: 420
           height: width
+
+          border: 1
 
           value: switch(root.content.type)
                  {
@@ -174,7 +190,7 @@ Page {
 
         Behavior on rotation {
           SmoothedAnimation {
-            duration: 1500
+            duration: 800
             easing {
               type: Easing.OutElastic
               amplitude: 0.2

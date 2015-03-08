@@ -53,3 +53,12 @@ make %{?jobs:-j%jobs}
 rm -rf %{buildroot}
 %qmake5_install
 
+%changelog
+* Sun Mar 8 2015 Asser Lähdemäki <asser@lahdemaki.fi> - 0.2-1
+- Added downsideUp feature requested by Vattuvarg
+- Some cosmetic changes (rounded border for code, code always centered)
+- Hopefully stabilized the code generation a bit
+
+* Fri Mar 6 2015 Asser Lähdemäki <asser@lahdemaki.fi> - 0.1-1
+- Initial release, with some bugs in generating codes
+- Translations not working yet
