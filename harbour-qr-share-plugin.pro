@@ -104,9 +104,7 @@ QMAKE_EXTRA_TARGETS += ts engineering_english finnish swedish english
 
 PRE_TARGETDEPS += ts engineering_english finnish swedish english
 
-#engineering_english_install finnish_install swedish_install
-
-INSTALLS += ts_install english_install
+INSTALLS += ts_install english_install engineering_english_install finnish_install swedish_install
 
 OTHER_FILES += \
     rpm/* \
