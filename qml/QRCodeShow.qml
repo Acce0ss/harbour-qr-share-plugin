@@ -71,12 +71,6 @@ Page {
         }
       }
 
-      Behavior on height {
-        SmoothedAnimation {
-          duration: 500
-        }
-      }
-
       MenuItem {
         //: Save function text
         //% "Save in pictures"
