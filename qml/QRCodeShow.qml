@@ -26,19 +26,34 @@ Page {
     active: appActive
 
     property bool upsideDown: false
-    property int hysteresis: -10
+    property int hysteresis: 10
+
+    function getReading() {
+        switch(orientation) {
+        case Orientation.Portrait:
+            return reading.x;
+        case Orientation.Landscape:
+            return reading.y;
+        case Orientation.PortraitInverted:
+            return -reading.x;
+        case Orientation.LandscapeInverted:
+            return -reading.y;
+        default:
+            return 5;
+        }
+    }
 
     onReadingChanged: {
 
-      if(reading.x < hysteresis)
+      if(getReading() > hysteresis)
       {
         upsideDown = true;
-        hysteresis = -2;
+        hysteresis = 2;
       }
       else
       {
         upsideDown = false;
-        hysteresis = -10;
+        hysteresis = 10;
       }
     }
   }
